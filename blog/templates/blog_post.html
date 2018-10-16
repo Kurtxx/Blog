@@ -1,0 +1,43 @@
+{# BLOG POST#}
+
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron">
+  <h2><a class='card-title' href="{{url_for('blog_posts.blog_post', blog_post_id=post.id)}}">{{post.title}}</a> </h2>
+  Nick: <a href="{{url_for('users.user_posts', username=post.author.username)}}"><b>{{post.author.username}}</b></a></br>
+  Data: <b>{{ post.date.strftime('%Y-%m-%d') }}</b></p>
+  <p class="card-text">{{ post.text }}</p>
+
+    {% if post.author == current_user %}
+    <div>
+      <a class="btn btn-primary" href="{{ url_for('blog_posts.update', blog_post_id=post.id) }}">Aktualizuj</a>
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#del_modal">Skasuj</button>
+    {% endif %}
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id='del_modal'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Skasuj Post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Czy napewno chcesz skasować POST?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+        <form action="{{url_for('blog_posts.delete_post',blog_post_id=post.id)}}" method="post">
+          <input class='btn btn-danger' type="submit" value="Delete">
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

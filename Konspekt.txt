@@ -1,0 +1,9 @@
+1. Logowanie
+2. Rejestracja
+3. Profil
+4. Edycja Profilu (Zmiana avatara + Nicku + Maila)
+5. Dodawanie Postu
+6. Edycja Postu
+7. Kasowanie Postu
+8. Wyœwietlanie Postu
+9. Wyœwietlanie Profilu Innego U¿ytkownika!
